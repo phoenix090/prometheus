@@ -15,3 +15,11 @@ forge 'https://forge.puppet.com'
 #mod 'apache',
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
 #  :branch => 'docs_experiment'
+mod 'puppet-prometheus', '6.4.0'
+mod 'puppetlabs/stdlib', '5.1.0'
+mod 'puppet/r10k', '6.6.1'
+mod 'puppetlabs/concat', '5.1.0'
+mod 'puppetlabs/puppetdb', '7.1.0'
+mod 'puppetlabs-registry', '2.1.0'
+mod 'puppetlabs/reboot', '2.0.0'
+mod 'puppetlabs-docker', '2.0.0'
