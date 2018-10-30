@@ -54,10 +54,6 @@ class profile::base_linux {
     }
   }
 
-  unless $::fqdn == 'monitor.borg.trek' {
-    include ::profile::sensu::client
-  }
 
   include ::profile::dns::client
-  include ::profile::elk::filebeat
 }

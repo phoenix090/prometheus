@@ -35,10 +35,10 @@ node 'manager.borg.trek' {
 }
 
 node 'node1.borg.trek' {
-  include ::role::nodes
+  include ::role::node1
 }
 
 node 'node2.borg.trek' {
-  include ::role::nodes
+  include ::role::node2
 }
 
