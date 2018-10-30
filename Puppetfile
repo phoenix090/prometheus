@@ -25,3 +25,13 @@ mod 'puppetlabs/reboot', '2.0.0'
 mod 'puppetlabs-docker', '2.0.0'
 mod 'puppet-archive', '3.2.1'
 mod 'camptocamp-systemd', '2.1.0'
+mod 'ajjahn-dns',
+  :git    => 'https://github.com/ajjahn/puppet-dns',
+  :commit => '57946eb'
+mod 'puppet-filemapper', '3.0.1'
+mod 'puppetlabs/git', '0.5.0'
+
+## Resten under kan vi muligens fjerne.
+mod 'puppetlabs/ruby', '1.0.0'
+mod 'puppetlabs/gcc', '0.3.0'
+mod 'puppet/make', '2.1.1'
