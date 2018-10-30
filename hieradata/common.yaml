@@ -1,0 +1,9 @@
+---
+message: "This node is using common data"
+base_windows::win_sw_pkg:
+  - 'git'
+base_linux::linux_sw_pkg:
+  - 'htop'
+  - 'sysstat'
+  - 'vim'
+base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDjS+4jaGA9E8SHT5Tf9lLpIshX/Ynt4wzXIrCW3ZwZo2BffvFi9LhN0MCvmdnY9ayqPWZ+IByhvhwdV9F6AK1ZPSSp6y15dYoap6fWVb8vf+pDNjjAs2IbFVh4ypuUNI6vfS2lBA//IEthawLlr7kACsAH9fjWF1/FkaKSAz8+RpmFx2vjT/ai/VQ8apDtH26KkbcAy0zyZbS/7DB7bw3FVUYzcR12jtkHmnO6BEuIVmaBVMpJLPsxX+nx7NpP14WA65iuYG2OwA7GrCXkawjN7lbOLwsEDJm1+9tPR0aruiZM5COCJtBg+3LCq2XMwmc/jEfEoAZvG2A2dtJC64OP'
