@@ -25,22 +25,15 @@ File { backup => false }
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
 
-node default {
-  include ::profile::base_linux
-}
-
 node 'manager.borg.trek' {
-  include ::role::example
-  include ::profile::base_linux
+  include ::role::manager
 }
 
 node 'node1.borg.trek' {
   include ::role::node_exporter
-  include ::profile::base_linux
 }
 
 node 'node2.borg.trek' {
   include ::role::node_exporter
-  include ::profile::base_linux
 }
 
