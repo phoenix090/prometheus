@@ -46,5 +46,22 @@ cat <<EOF >> /etc/netplan/50-cloud-init.yaml
 EOF
 netplan apply
 
+sleep 450
+
+cat <<EOF > /var/tmp/r10k.pp
+class { 'r10k':
+  version => '2.6.4',
+  sources => {
+    'puppet' => {
+      'remote'  => 'https://github.com/phoenix090/prometheus.git',
+      'basedir' => '/etc/puppetlabs/code/environments',
+      'prefix'  => false,
+    },
+  },
+}
+EOF
+
+/opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
+r10k deploy environment h_testing -pv
 #wc_notify --data-binary '{"status": "SUCCESS"}'
 
