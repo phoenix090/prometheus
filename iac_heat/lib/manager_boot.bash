@@ -19,7 +19,7 @@ class { 'r10k':
   version => '2.6.4',
   sources => {
     'puppet' => {
-      'remote'  => 'https://github.com/phoenix090/prometheus.git',
+      'remote'  => 'https://github.com/githubgossin/control-repo-k8s.git',
       'basedir' => '/etc/puppetlabs/code/environments',
       'prefix'  => false,
     },
@@ -34,9 +34,9 @@ bash ./new_keys_and_passwds.bash
 # (which requires reboot)
 echo "$(ip a | grep -Eo 'inet ([0-9]*\.){3}[0-9]*' | tr -d 'inet ' | grep -v '^127') $(hostname).borg.trek $(hostname)" >> /etc/hosts
 /opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true
-/opt/puppetlabs/bin/puppet agent -t # request certificate
-/opt/puppetlabs/bin/puppet agent -t # configure manager
-/opt/puppetlabs/bin/puppet agent -t # once more to update exported resources
+/opt/puppetlabs/bin/puppet agent -t  # request certificate
+/opt/puppetlabs/bin/puppet agent -t  # configure manager
+/opt/puppetlabs/bin/puppet agent -t  # once more to update exported resources
 /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 # permanent fix for domainname
 cat <<EOF >> /etc/netplan/50-cloud-init.yaml
