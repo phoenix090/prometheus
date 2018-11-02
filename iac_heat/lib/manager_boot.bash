@@ -47,7 +47,7 @@ EOF
 netplan apply
 
 sleep 450
-
+sudo -i
 cat <<EOF > /var/tmp/r10k.pp
 class { 'r10k':
   version => '2.6.4',
@@ -61,7 +61,11 @@ class { 'r10k':
 }
 EOF
 
-/opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
+puppet apply /var/tmp/r10k.pp
 r10k deploy environment h_testing -pv
+sleep 90
+cd /etc/puppetlabs/code/environment/h_testing/
+puppet apply --environment h_testing manifests/site.pp
+echo "Alt gikk bra!"
 #wc_notify --data-binary '{"status": "SUCCESS"}'
 

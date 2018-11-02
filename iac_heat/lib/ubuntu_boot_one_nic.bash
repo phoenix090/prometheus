@@ -19,3 +19,6 @@ cat <<EOF >> /etc/netplan/50-cloud-init.yaml
 EOF
 
 netplan apply
+
+sleep 180
+/opt/puppetlabs/bin/puppet agent -t --environment h_testing # configure from another then the default production catalog
