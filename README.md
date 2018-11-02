@@ -2,7 +2,7 @@
 Infrastructure As Code Project 2018
 
 ### To create a stack after cloning
-###### openstack stack create -t iac_heat/iac_top.yaml -e iac_heat/iac_top_env.yaml < name-of-the-stack >
+###### openstack stack create -t iac_heat/iac_top.yaml -e iac_heat/iac_top_env.yaml << name-of-the-stack >>
 
 ### Commands you have to run on manager to get prometheus going
 ###### puppet appy /var/tmp/r10k.pp
