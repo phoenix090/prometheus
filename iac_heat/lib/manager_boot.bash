@@ -62,10 +62,9 @@ class { 'r10k':
 EOF
 
 puppet apply /var/tmp/r10k.pp
-r10k deploy environment h_testing -pv
+r10k deploy environment production -pv
 sleep 90
 cd /etc/puppetlabs/code/environments/h_testing/
-puppet apply --environment h_testing manifests/site.pp
-echo "Alt gikk bra!"
+puppet apply manifests/site.pp
 #wc_notify --data-binary '{"status": "SUCCESS"}'
 
