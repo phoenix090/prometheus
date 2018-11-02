@@ -64,7 +64,7 @@ EOF
 puppet apply /var/tmp/r10k.pp
 r10k deploy environment h_testing -pv
 sleep 90
-cd /etc/puppetlabs/code/environment/h_testing/
+cd /etc/puppetlabs/code/environments/h_testing/
 puppet apply --environment h_testing manifests/site.pp
 echo "Alt gikk bra!"
 #wc_notify --data-binary '{"status": "SUCCESS"}'
