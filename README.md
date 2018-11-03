@@ -6,11 +6,9 @@ Infrastructure As Code Project 2018
 
 ### Commands you have to run on manager to get prometheus going
 ###### puppet appy /var/tmp/r10k.pp
-###### cd /etc/puppetlabs/code/environments/h_testing
-###### puppet apply --environment h_testing manifests/site.pp
+###### cd /etc/puppetlabs/code/environments/production
+###### puppet apply manifests/site.pp
 
-### On all other nodes, you need to do one command
-###### puppet agent -t --environment h_testing
 
 ### To run validation and unit test, type following commands
 ###### puppet validate manifest/*
