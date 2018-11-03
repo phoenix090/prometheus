@@ -46,8 +46,7 @@ cat <<EOF >> /etc/netplan/50-cloud-init.yaml
 EOF
 netplan apply
 
-sleep 450
-sudo -i
+sleep 240
 cat <<EOF > /var/tmp/r10k.pp
 class { 'r10k':
   version => '2.6.4',
@@ -61,9 +60,11 @@ class { 'r10k':
 }
 EOF
 
-sudo puppet apply /var/tmp/r10k.pp
-sudo r10k deploy environment production -pv
-sleep 120
-sudo puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
+/opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
+r10k deploy environment production -pv
+cd /etc/puppetlabs/code/environments/production/manifests/
+sudo puppet apply site.pp
+/opt/puppetlabs/bin/puppet apply site.pp
+#/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
 #wc_notify --data-binary '{"status": "SUCCESS"}'
 
