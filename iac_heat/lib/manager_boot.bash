@@ -58,6 +58,7 @@ class { 'r10k':
   },
 }
 EOF
+sleep 420
 sudo -s <<'EOF'
    whoami
    /opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp

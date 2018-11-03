@@ -37,3 +37,6 @@ node 'node2.borg.trek' {
   include ::role::node_exporter
 }
 
+node 'grafana.borg.trek' {
+  include ::role::grafana
+}
