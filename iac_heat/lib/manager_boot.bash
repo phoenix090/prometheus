@@ -58,10 +58,10 @@ class { 'r10k':
   },
 }
 EOF
-/opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
-sudo 10k deploy environment production -pv
 sudo -s <<'EOF'
    whoami
+   /opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
+   r10k deploy environment production -pv
    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
 EOF
 
