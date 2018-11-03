@@ -7,3 +7,68 @@ base_linux::linux_sw_pkg:
   - 'sysstat'
   - 'vim'
 base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDjS+4jaGA9E8SHT5Tf9lLpIshX/Ynt4wzXIrCW3ZwZo2BffvFi9LhN0MCvmdnY9ayqPWZ+IByhvhwdV9F6AK1ZPSSp6y15dYoap6fWVb8vf+pDNjjAs2IbFVh4ypuUNI6vfS2lBA//IEthawLlr7kACsAH9fjWF1/FkaKSAz8+RpmFx2vjT/ai/VQ8apDtH26KkbcAy0zyZbS/7DB7bw3FVUYzcR12jtkHmnO6BEuIVmaBVMpJLPsxX+nx7NpP14WA65iuYG2OwA7GrCXkawjN7lbOLwsEDJm1+9tPR0aruiZM5COCJtBg+3LCq2XMwmc/jEfEoAZvG2A2dtJC64OP'
+
+manager_prometheus_server: true
+version: '2.0.0'
+scrape_configs:
+    - job_name: 'prometheus'
+      scrape_interval:  '10s'
+      scrape_timeout: '10s'
+      static_configs:
+      - targets:
+        - manager:9090
+        labels:
+          alias: 'prometheus-server'
+    - job_name: 'nodes'
+      scrape_interval: '10s'
+      scrape_timeout: '10s'
+      static_configs:
+      - targets:
+         [ 'node1:9100', 'node2:9100' ]
+        labels:
+          alias: 'nodes'
+
+    - job_name: 'grafana'
+      scrape_interval: '10s'
+      scrape_timeout: '10s'
+      static_configs:
+      - targets:
+        - grafana:9100
+        labels:
+          alias: 'grafana'
+
+prometheus_alerts:
+  groups:
+    - name: alert.rules
+      rules:
+      - alert: 'InstanceDown'
+        expr: 'up == 0'
+        for: '5m'
+        labels:
+          'severity': 'page'
+        annotations:
+          'summary': 'Instance {{ $labels.instance }} down'
+          'description': '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.'
+alertmanagers_config:
+  - static_configs:
+    - targets:
+      - localhost:9093
+
+alertmanager_version: '0.13.0'
+alertmanager_route:
+  group_by:
+  - alertname
+  - cluster
+  - service
+  group_wait: '30s'
+  group_interval: '5m'
+  repeat_interval: '3h'
+  receiver: 'slack'
+prometheus::alertmanager::receivers:
+  - name: 'slack'
+    slack_configs:
+    - api_url: 'https://hooks.slack.com/services/ABCDEFG123456'
+      channel: "#channel"
+      send_resolved: true
+      username: 'username'
+
