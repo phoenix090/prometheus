@@ -5,7 +5,7 @@ In this group project we had the assignment to deploy Prometheus and Grafana wit
 
 ### To create a stack and run prometheus and grafana after cloning this repo, type only this command:
 ###### openstack stack create -t iac_heat/iac_top.yaml -e iac_heat/iac_top_env.yaml << name-of-the-stack >>
-- Now you need to wait like 30-40 minutes and everything should be up running after that.
+- Now you need to wait like 30-40 minutes and everything should be up and running after that.
 
 ### To run validation and unit test, type following commands
 ###### puppet validate manifest/*
