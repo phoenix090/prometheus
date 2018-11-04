@@ -10,7 +10,7 @@ In this group project we had the assignment to deploy Prometheus and Grafana wit
 ### To run validation and unit test, type following commands
 ###### puppet validate manifest/*
 ###### pdk validate puppet
-###### pdk test unit
+
 
 ### If you want to scale up the infrastructure/ nodes, you need to configure the following files:
 ##### 1. Modify the iac_heat/iac_infraservices.yaml
