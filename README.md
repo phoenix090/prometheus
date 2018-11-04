@@ -7,9 +7,11 @@ In this group project we had the assignment to deploy Prometheus and Grafana wit
 ###### openstack stack create -t iac_heat/iac_top.yaml -e iac_heat/iac_top_env.yaml << name-of-the-stack >>
 - Now you need to wait like 30-40 minutes and everything should be up and running after that.
 
-### To run validation and unit test, type following commands
-###### puppet validate manifest/*
+### To run validation, puppet-lint and smoke test type following commands
+###### puppet validate manifests/*
 ###### pdk validate puppet
+###### E.g. puppet parser validate manifests/site.pp
+###### puppet apply manifest/site.pp --noop
 
 
 ### If you want to scale up the infrastructure/ nodes, you need to configure the following files:
