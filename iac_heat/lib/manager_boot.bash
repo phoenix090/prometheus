@@ -63,8 +63,7 @@ sleep 420
 
 cat <<EOF > build.bash
 #!/bin/bash
-  sudo -s <<'EOF'
-   whoami
+  sudo -i <<'EOF'
    /opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
    r10k deploy environment production -pv
    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
