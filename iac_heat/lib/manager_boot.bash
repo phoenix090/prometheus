@@ -58,13 +58,18 @@ class { 'r10k':
   },
 }
 EOF
-sleep 420
-sudo -s <<'EOF'
-   whoami
+
+cat <<EOF > build.bash
+#!/bin/bash
+  sudo -i <<'EOF'
    /opt/puppetlabs/bin/puppet apply /var/tmp/r10k.pp
    r10k deploy environment production -pv
    /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
+  EOF
 EOF
+
+chmod +x build.bash
+./build.bash
 
 #/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp
 #wc_notify --data-binary '{"status": "SUCCESS"}'

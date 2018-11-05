@@ -61,7 +61,6 @@ resources:
       dns_ip:            { get_param: dns_ip }
       manager_ip:        { get_param: manager_ip }
 
-
   grafana:
     type: lib/managed_linux_server_one_nic.yaml
     properties:

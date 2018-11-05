@@ -29,6 +29,8 @@ mod 'puppet-filemapper', '3.0.1'
 ## Grafana 
 mod 'puppet-grafana', '5.0.0'
 mod 'puppet-healthcheck', '0.4.1'
+mod 'puppetlabs/apt',  '6.1.1'
+
 ## Resten under kan vi muligens fjerne.
 mod 'puppetlabs/ruby', '1.0.0'
 mod 'puppetlabs/gcc', '0.3.0'

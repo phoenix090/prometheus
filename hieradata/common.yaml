@@ -7,3 +7,7 @@ base_linux::linux_sw_pkg:
   - 'sysstat'
   - 'vim'
 base_linux::root_ssh_key: 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDjS+4jaGA9E8SHT5Tf9lLpIshX/Ynt4wzXIrCW3ZwZo2BffvFi9LhN0MCvmdnY9ayqPWZ+IByhvhwdV9F6AK1ZPSSp6y15dYoap6fWVb8vf+pDNjjAs2IbFVh4ypuUNI6vfS2lBA//IEthawLlr7kACsAH9fjWF1/FkaKSAz8+RpmFx2vjT/ai/VQ8apDtH26KkbcAy0zyZbS/7DB7bw3FVUYzcR12jtkHmnO6BEuIVmaBVMpJLPsxX+nx7NpP14WA65iuYG2OwA7GrCXkawjN7lbOLwsEDJm1+9tPR0aruiZM5COCJtBg+3LCq2XMwmc/jEfEoAZvG2A2dtJC64OP'
+
+manager_prometheus_server: true
+version: '2.0.0'
+discord_url: 'https://discordapp.com/api/webhooks/503581701981732865/OCYiZbwzXY0LlwCZ6J8DhxuD6PFCja7PNC08Du9B0SfcNTR-LzLvaqJit5FJfbbL0Aod/slack'

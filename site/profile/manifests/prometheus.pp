@@ -1,38 +1,51 @@
 class profile::prometheus {
-  class { 'prometheus':
-    manage_prometheus_server => true,
-    version => '2.0.0',
-    alerts => { 'groups' => [{ 'name' => 'alert.rules', 'rules' => [{ 'alert' => 'InstanceDown', 'expr' => 'up == 0', 'for' => '5m', 'labels' => { 'severity' => 'page', }, 'annotations' => { 'summary' => 'Instance {{ $labels.instance }} down', 'description' => '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes.' } }]}]},
+   $discord_url = lookup('discord_url')
+   $version = lookup('version')
+   $manager_server = lookup('manager_prometheus_server')
+
+   class { 'prometheus':
+    manage_prometheus_server => $manager_server,
+    version => $version,
     scrape_configs => [
-      { 'job_name' => 'manager',
+      { 'job_name' => 'prometheus',
         'scrape_interval' => '10s',
         'scrape_timeout'  => '10s',
         'static_configs'  => [
-           { 'targets' => [ 'manager:9090' ],
-              'labels'  => { 'alias'=> 'Prometheus'}
-           }
-         ]
-      },
-      { 'job_name' => 'node1',
-         'scrape_interval' => '30s',
-        'scrape_timeout'  => '30s',
+          { 'targets' => [ 'localhost:9090' ],
+            'labels'  => { 'alias' => 'Prometheus'}
+          }
+        ]
+     },
+
+     { 'job_name' => 'nodes',
+        'scrape_interval' => '10s',
+        'scrape_timeout'  => '10s',
         'static_configs'  => [
-           { 'targets' => [ 'node1:9100' ],
-             'labels'  => { 'alias'=> 'Node'}
-           }
-        ]
-      },
-      { 'job_name' => 'node2',
-        'scrape_interval' => '30s',
-        'scrape_timeout'  => '30s',
+        { 'targets' => [ 'node1:9100', 'node2:9100' ],
+          'labels'  => { 'alias' => 'Nodes'}
+        }
+       ]
+     },
+
+     { 'job_name' => 'grafana',
+         'scrape_interval' => '10s',
+         'scrape_timeout'  => '10s',
          'static_configs'  => [
-           { 'targets' => [ 'node2:9100' ],
-             'labels'  => { 'alias'=> 'Node'}
+           { 'targets' => [ 'grafana:9100' ],
+             'labels'  => { 'alias' => 'grafana'}
            }
-        ]
-      }
-    ],
-    alertmanagers_config => [{ 'static_configs' => [{'targets' => [ 'localhost:9093' ]}]}],
+           ]
+     },
+   ],
   }
+
+
+  # Managing alerts
+  class { 'prometheus::alertmanager':
+  version       => '0.13.0',
+  route         => { 'group_by' => [ 'alertname', 'cluster', 'service' ], 'group_wait'=> '10s', 'group_interval'=> '1m', 'repeat_interval'=> '1m', 'receiver'=> 'slack' },
+  receivers     => [ { 'name' => 'slack', 'slack_configs'=> [ { 'api_url'=> $discord_url, 'channel' => '#channel', 'send_resolved' => true, 'username' => 'username'}] }]
+  }
+
 }
 
