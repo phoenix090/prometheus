@@ -4,6 +4,7 @@ Infrastructure As Code Project 2018
 In this group project we had the assignment to deploy Prometheus and Grafana with the configuration managment system Puppet.
 
 ### To create a stack and run prometheus and grafana after cloning this repo, type only this command:
+###### Add your own key in iac_heat/iac_top_env.yaml before creating the stack
 ###### openstack stack create -t iac_heat/iac_top.yaml -e iac_heat/iac_top_env.yaml << name-of-the-stack >>
 - Now you need to wait like 20-30 minutes and everything should be up and running after that.
 
