@@ -26,15 +26,15 @@ mod 'ajjahn-dns',
   :git    => 'https://github.com/ajjahn/puppet-dns',
   :commit => '57946eb'
 mod 'puppet-filemapper', '3.0.1'
+mod 'camptocamp-openssl', '1.10.0'
 ## Grafana 
 mod 'puppet-grafana', '5.0.0'
 mod 'puppet-healthcheck', '0.4.1'
 mod 'puppetlabs/apt',  '6.1.1'
-
-## Resten under kan vi muligens fjerne.
 mod 'puppetlabs/ruby', '1.0.0'
 mod 'puppetlabs/gcc', '0.3.0'
 mod 'puppet/make', '2.1.1'
+mod 'puppet-nginx', '0.15.0'
 
 mod 'puppetlabs/concat', '5.1.0'
 mod 'lwf/remote_file', '1.1.3'
